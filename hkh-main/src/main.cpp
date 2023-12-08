@@ -71,7 +71,7 @@ void autonomous() {
 	intake = -127;
 	PIDdrive(47,0.22,0.01,5,1350);
 	PIDdrive(-47,0.25,0.01,5,1350);
-	PIDturn(75,1.9,0.00025,5);
+	PIDturn(75,1.9,0.00025,6);
 	PIDdriverightArc(-40,0.4,0.01,0.2,2200);
 	intake = 0;
 	PIDdrive(13,0.22,0.01,5,1000);
