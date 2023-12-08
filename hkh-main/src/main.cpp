@@ -69,17 +69,21 @@ void competition_initialize() {}
  */
 void autonomous() {
 	intake = -127;
-	PIDdrive(47,0.22,0.01,5,1350);
-	PIDdrive(-47,0.25,0.01,5,1350);
-	PIDturn(75,1.9,0.00025,6);
-	PIDdriverightArc(-40,0.4,0.01,0.2,2200);
+	PIDdrive(47,0.22,0.01,8,1350);
+	PIDdrive(-49,0.25,0.01,8,1350);
+	PIDturn(90,1.9,0.00025,6);
 	intake = 0;
+	PIDdriverightArc(-40,0.4,0.01,0.2,2200);
+	PIDdrive(5,0.22,0.01,5,1350);
+	PIDdrive(-7,0.25,0.01,5,1350);
 	PIDdrive(13,0.22,0.01,5,1000);
-	PIDturn(-40,1.9,0.00025,5);
-	wings.set_value(true);
+	PIDturn(-40,1.99,0.00035,7);
 	delay(350);
-	PIDdrive(12,0.5,0.01,5,1000);
-	PIDturn(-45,1.9,0.01,5);
+	PIDdrive(9,0.5,0.01,5,1000);
+	wings.set_value(true);
+	delay(200);
+	PIDturn(-45,1.98,0.003,5);
+	PIDturn(35,1.98,0.0035,5);
 	intake = 127;
 	delay(100);
 	wings.set_value(false);
