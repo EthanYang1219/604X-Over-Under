@@ -115,10 +115,11 @@ void PIDturn (int degrees, double kP, double kI, double kD, int timer){
 	double past_difference;
 	double derivative;
 	int startime = millis();
+	int st = millis();
 	
-	while( timer > millis() - startime){
+	while(timer > millis() - startime){
 		if(abs(degrees-inertial.get_rotation())>2.75){
-			startime = millis();
+			st = millis();
 		}
 			difference = degrees-inertial.get_rotation();
 			if(fabs(degrees-inertial.get_rotation()) < 3){
