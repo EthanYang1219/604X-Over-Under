@@ -1,6 +1,5 @@
 #include "main.h"
 #include "math.h"
-#include "pros/rtos.h"
 void resetSens(){
 left_front.tare_position();
 left_top.tare_position();
@@ -114,13 +113,9 @@ void PIDturn (int degrees, double kP, double kI, double kD, int timer){
 	double integral;
 	double past_difference;
 	double derivative;
-	int startime = millis();
 	int st = millis();
 	
-	while(timer > millis() - startime){
-		if(abs(degrees-inertial.get_rotation())>2.75){
-			st = millis();
-		}
+	while((abs(degrees-inertial.get_rotation())>2.75) && timer > millis() - st){
 			difference = degrees-inertial.get_rotation();
 			if(fabs(degrees-inertial.get_rotation()) < 3){
 			integral += difference;
