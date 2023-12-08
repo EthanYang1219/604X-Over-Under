@@ -1,5 +1,6 @@
 #include "main.h"
 #include "math.h"
+#include "pros/rtos.h"
 void resetSens(){
 left_front.tare_position();
 left_top.tare_position();
@@ -106,20 +107,18 @@ double InchtoTicks(double distance){
 
 
 
-void PIDturn (int degrees, double kP, double kI, double kD){
+void PIDturn (int degrees, double kP, double kI, double kD, int timer){
 	resetSens();
 	double difference = degrees-inertial.get_rotation();
 	double power;
 	double integral;
 	double past_difference;
 	double derivative;
-	int timer = millis();
-	int i = 4;
+	int startime = millis();
 	
-	while(((millis()-timer) < 250)){
-		i++;
+	while( timer > millis() - startime){
 		if(abs(degrees-inertial.get_rotation())>2.75){
-			timer = millis();
+			startime = millis();
 		}
 			difference = degrees-inertial.get_rotation();
 			if(fabs(degrees-inertial.get_rotation()) < 3){
@@ -179,7 +178,7 @@ void timedcata(int time, int power){
 }
 void resetcata(){
 
-	while(rotation_sensor.get_angle() < 4650){
+	while(rotation_sensor.get_angle() < 12150){
 			catapult = -127;
 	}
 	catapult = 0;
